@@ -1,0 +1,19 @@
+body {
+  background-color: rgb(222, 233, 236);
+}
+
+p {
+  user-select: none;
+}
+
+#ball {
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  /* border: 10px solid violet; */
+  background-image: url("assets/ball.png");
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
