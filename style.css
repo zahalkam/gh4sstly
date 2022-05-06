@@ -8,10 +8,8 @@ p {
 
 #ball {
   position: absolute;
-  top: -8000px;
-  left: -8000px;
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
   outline: 1px solid black;
   outline-offset: -1;
   background-image: url("assets/ball.png");
