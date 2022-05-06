@@ -33,6 +33,7 @@ h1 {
   background-color: rgb(240, 240, 240);
   margin: auto;
   outline: 5px solid rgb(0, 0, 50);
+  outline-offset: -1px;
   overflow: hidden;
 }
 
