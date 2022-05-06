@@ -56,29 +56,34 @@ window.addEventListener("resize", function () {
   this.setupGame();
 });
 
-clickableArea.addEventListener("click", (event) => {
-  logging.debug(`Mouse click: {x: ${event.layerX}, y: ${event.layerY}}`);
+["mousedown", "touchstart"].forEach((evt) =>
+  clickableArea.addEventListener(
+    evt,
+    (event) => {
+      logging.debug(`Mouse click: {x: ${event.layerX}, y: ${event.layerY}}`);
+      var xDiff = event.layerX - this.position.left;
+      var yDiff = event.layerY - this.position.top;
 
-  var xDiff = event.layerX - this.position.left;
-  var yDiff = event.layerY - this.position.top;
-
-  if (this.isInsideCircle(event)) {
-    this.gVelocity = 2.5;
-    this.score.innerHTML = parseInt(this.score.innerHTML) + 1;
-    if (xDiff > 0) {
-      this.xVelocity = -xDiff * 0.4 + 3;
-    }
-    if (xDiff < 0) {
-      this.xVelocity = -xDiff * 0.4 + 3;
-    }
-    if (yDiff > 0) {
-      this.yVelocity = -yDiff * 0.2 - 20;
-    }
-    if (yDiff < 0) {
-      this.yVelocity = -yDiff * 0.2 - 10;
-    }
-  }
-});
+      if (this.isInsideCircle(event)) {
+        this.gVelocity = 2.5;
+        this.score.innerHTML = parseInt(this.score.innerHTML) + 1;
+        if (xDiff > 0) {
+          this.xVelocity = -xDiff * 0.4 - 6;
+        }
+        if (xDiff < 0) {
+          this.xVelocity = -xDiff * 0.4 + 6;
+        }
+        if (yDiff > 0) {
+          this.yVelocity = -yDiff * 0.2 - 20;
+        }
+        if (yDiff < 0) {
+          this.yVelocity = -yDiff * 0.2 - 10;
+        }
+      }
+    },
+    false
+  )
+);
 
 function moveBall(xVelocity, yVelocity, gVelocity) {
   this.position.left = this.position.left + xVelocity;
