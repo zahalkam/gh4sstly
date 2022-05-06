@@ -86,8 +86,8 @@ h1 {
   height: 100vh;
   background-color: rgb(240, 240, 240);
   margin: auto;
-  outline: 6px inset rgb(0, 0, 20);
-  box-shadow: 0 0 30px 0 inset black;
+  outline: 6px inset rgb(0, 0, 0);
+  box-shadow: 0 0 30px 0 inset rgb(0, 0, 0);
   overflow: hidden;
 }
 
@@ -97,7 +97,6 @@ h1 {
   height: 100%;
   background-color: transparent;
   z-index: 9000;
-  box-shadow: 0px -30px 30px -30px inset rgb(250, 220, 255);
 }
 
 #score {
@@ -116,6 +115,20 @@ h1 {
   width: 100%;
   top: 0px;
   left: 0px;
-  background-color: rgb(0, 0, 20);
+  background-color: rgb(0, 0, 0);
   z-index: 10000;
+}
+
+#footer {
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#footer-text {
+  font-family: "Schoolbell";
+  color: rgba(0, 0, 0, 0.4);
+  font-size: 1.2rem;
+  margin: 1rem;
 }
