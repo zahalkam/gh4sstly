@@ -22,7 +22,7 @@ function setupGame() {
   this.gameHeight = this.game.getBoundingClientRect().height;
   this.position = {
     left: this.gameWidth / 2,
-    top: this.gameHeight / 2,
+    top: this.gameHeight / 1.6,
   };
 
   this.ball.style.left = `${position.left - ballRadius}px`;
