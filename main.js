@@ -27,6 +27,7 @@ function setupGame() {
 
   this.ball.style.left = `${position.left - ballRadius}px`;
   this.ball.style.top = `${position.top - ballRadius}px`;
+  this.ball.style.animation = ``;
 
   this.score.innerHTML = 0;
 
