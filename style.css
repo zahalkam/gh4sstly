@@ -29,6 +29,16 @@ h1 {
   background-repeat: no-repeat;
   border-radius: 50%;
   overflow: hidden;
+  -webkit-animation: spin 4s infinite linear;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 #ball:before {
