@@ -72,10 +72,10 @@ clickableArea.addEventListener("click", (event) => {
       this.xVelocity = -xDiff * 0.4 + 3;
     }
     if (yDiff > 0) {
-      this.yVelocity = -yDiff * 0.2 - 16;
+      this.yVelocity = -yDiff * 0.2 - 20;
     }
     if (yDiff < 0) {
-      this.yVelocity = -yDiff * 0.2 - 16;
+      this.yVelocity = -yDiff * 0.2 - 10;
     }
   }
 });
