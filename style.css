@@ -105,6 +105,10 @@ h2 {
   flex-direction: row;
 }
 
+#score-number {
+  margin-left: 0.7rem;
+}
+
 #high-score {
   margin: 0.6rem;
   display: flex;
@@ -156,7 +160,7 @@ h2 {
 }
 
 #high-score-number {
-  margin-left: 0.5rem;
+  margin-left: 0.7rem;
 }
 
 #top-bar {
