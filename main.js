@@ -3,15 +3,17 @@ var logging = new Logging();
 
 var game = document.getElementById("game");
 var ball = document.getElementById("ball");
+var score = document.getElementById("score-number");
 var clickableArea = document.getElementById("clickable-area");
+
 var gameWidth;
 var gameHeight;
-var position;
 var ballRadius = 75;
+var position;
 
 var xVelocity;
 var yVelocity;
-var gravity;
+var gVelocity;
 
 /* game setup */
 this.setupGame();
@@ -26,16 +28,22 @@ function setupGame() {
   this.ball.style.left = `${position.left - ballRadius}px`;
   this.ball.style.top = `${position.top - ballRadius}px`;
 
-  xVelocity = 0;
-  yVelocity = 0;
-  gravity = 0;
-  logging.debug(`Game width: ${this.gameWidth}`);
-  logging.debug(`Game height: ${this.gameHeight}`);
+  this.score.innerHTML = 0;
+
+  this.xVelocity = 0;
+  this.yVelocity = 0;
+  this.gVelocity = 0;
+
+  this.logging.debug(`Game width: ${this.gameWidth}`);
+  this.logging.debug(`Game height: ${this.gameHeight}`);
 }
 
 /* movement interval */
 setInterval(() => {
-  this.moveBall(this.xVelocity, this.yVelocity);
+  if (this.gVelocity < 18) this.gVelocity = this.gVelocity * 1.05;
+  this.xVelocity = this.xVelocity * 0.95;
+  this.yVelocity = this.yVelocity * 0.95;
+  this.moveBall(this.xVelocity, this.yVelocity, this.gVelocity);
 }, 13);
 
 /* collision check interval */
@@ -55,30 +63,26 @@ clickableArea.addEventListener("click", (event) => {
   var yDiff = event.layerY - this.position.top;
 
   if (this.isInsideCircle(event)) {
+    this.gVelocity = 2.5;
+    this.score.innerHTML = parseInt(this.score.innerHTML) + 1;
     if (xDiff > 0) {
-      this.xVelocity = -xDiff * 0.4;
+      this.xVelocity = -xDiff * 0.4 + 3;
     }
     if (xDiff < 0) {
-      this.xVelocity = -xDiff * 0.4;
+      this.xVelocity = -xDiff * 0.4 + 3;
     }
     if (yDiff > 0) {
-      this.yVelocity = -yDiff * 0.2 - 8;
+      this.yVelocity = -yDiff * 0.2 - 16;
     }
     if (yDiff < 0) {
-      this.yVelocity = -yDiff * 0.2 - 8;
+      this.yVelocity = -yDiff * 0.2 - 16;
     }
   }
 });
 
-function moveBall(xVelocity, yVelocity) {
+function moveBall(xVelocity, yVelocity, gVelocity) {
   this.position.left = this.position.left + xVelocity;
-  this.position.top = this.position.top + yVelocity;
-
-  /* gravity multiplier */
-  if (this.gravity < 18) {
-    this.gravity = gravity * 1.05;
-    this.position.top = this.position.top + this.gravity;
-  }
+  this.position.top = this.position.top + yVelocity + gVelocity;
 
   this.ball.style.top = `${this.position.top - ballRadius}px`;
   this.ball.style.left = `${this.position.left - ballRadius}px`;
@@ -102,7 +106,8 @@ function checkForCollision() {
   }
 
   /* floor */
-  if (this.position.top > this.gameHeight - this.ballRadius) {
+  if (this.position.top > this.gameHeight * 2) {
+    this.setupGame();
   }
 }
 
