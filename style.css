@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: monospace;
   background-image: url("/assets/speedwagonbg.jpg");
   background-size: cover;
   background-position: center;
@@ -100,7 +100,8 @@ h1 {
 }
 
 #score {
-  margin: 1rem;
+  margin: 0.6rem;
+  font-size: 1.2rem;
   display: flex;
   flex-direction: row;
 }
