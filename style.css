@@ -103,7 +103,18 @@ h2 {
   flex-direction: row;
 }
 
-#score-number {
+#high-score {
+  margin: 0.6rem;
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2rem;
+}
+
+#high-score h1 {
+  color: #000000;
+}
+
+#high-score-number {
   margin-left: 0.5rem;
 }
 
@@ -120,7 +131,10 @@ h2 {
 }
 
 #footer {
-  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   position: absolute;
   bottom: 0;
   width: 100%;

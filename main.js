@@ -4,8 +4,11 @@ var logging = new Logging();
 var game = document.getElementById("game");
 var ball = document.getElementById("ball");
 var ballBackground = document.getElementById("ball-background");
-var score = document.getElementById("score-number");
 var clickableArea = document.getElementById("clickable-area");
+
+var score = document.getElementById("score-number");
+var highScore = document.getElementById("high-score-number");
+var localStorageHighScore = localStorage.getItem("highScore");
 
 var gameWidth;
 var gameHeight;
@@ -16,9 +19,20 @@ var xVelocity;
 var yVelocity;
 var gVelocity;
 
+if (this.localStorageHighScore) {
+  this.highScore.innerHTML = this.localStorageHighScore;
+}
+
 /* game setup */
 this.setupGame();
 function setupGame() {
+  if (
+    parseInt(this.score.innerHTML) > parseInt(this.highScore.innerHTML) ||
+    !parseInt(this.highScore.innerHTML)
+  ) {
+    this.highScore.innerHTML = this.score.innerHTML;
+    localStorage.setItem("highScore", parseInt(this.highScore.innerHTML));
+  }
   this.gameWidth = this.game.getBoundingClientRect().width;
   this.gameHeight = this.game.getBoundingClientRect().height;
   this.position = {
@@ -31,7 +45,6 @@ function setupGame() {
   this.ballBackground.style.animation = ``;
 
   this.score.innerHTML = 0;
-
   this.xVelocity = 0;
   this.yVelocity = 0;
   this.gVelocity = 0;
