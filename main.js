@@ -1,19 +1,70 @@
-var xVelocity = 0;
-var yVelocity = 0;
+/* global imports & variables */
+var logging = new Logging();
 
+var game = document.getElementById("game");
+var ball = document.getElementById("ball");
+var clickableArea = document.getElementById("clickable-area");
+
+var gameWidth;
+var gameHeight;
+var position;
 var ballRadius = 100;
 
-var position = {
-  left: window.innerWidth / 2,
-  top: window.innerHeight / 2,
-};
+var xVelocity;
+var yVelocity;
+var gravity;
 
-var ball = document.getElementById("ball");
+/* game setup */
+this.setupGame();
+function setupGame() {
+  this.gameWidth = this.game.getBoundingClientRect().width;
+  this.gameHeight = this.game.getBoundingClientRect().height;
+  this.position = {
+    left: this.gameWidth / 2,
+    top: this.gameHeight / 2,
+  };
+
+  xVelocity = 0;
+  yVelocity = 0;
+  gravity = 0;
+
+  logging.debug(`Game width: ${this.gameWidth}`);
+  logging.debug(`Game height: ${this.gameHeight}`);
+}
+
+/* event listeners */
+window.addEventListener("resize", function () {
+  this.setupGame();
+});
+
+clickableArea.addEventListener("click", (event) => {
+  logging.debug(`Mouse click: {x: ${event.layerX}, y: ${event.layerY}}`);
+  console.log(event);
+  var xDiff = event.layerX - this.position.left;
+  var yDiff = event.layerY - this.position.top;
+
+  console.log(xDiff);
+  console.log(yDiff);
+  if (this.isInsideCircle(event)) {
+    this.resetVelocity();
+
+    if (xDiff > 0) {
+      this.xVelocity = -xDiff * 0.2 - 2;
+    }
+    if (xDiff < 0) {
+      this.xVelocity = -xDiff * 0.2 - 2;
+    }
+    if (yDiff > 0) {
+      this.yVelocity = -yDiff * 0.2 - 2;
+    }
+    if (yDiff < 0) {
+      this.yVelocity = -yDiff * 0.2 - 2;
+    }
+  }
+});
 
 this.ball.style.left = `${position.left - ballRadius}px`;
 this.ball.style.top = `${position.top - ballRadius}px`;
-
-console.log(position);
 
 // movement interval
 setInterval(() => {
@@ -57,32 +108,11 @@ function resetVelocity() {
   this.yVelocity = 0;
 }
 
-document.addEventListener("click", (event) => {
-  var xDiff = event.clientX - position.left;
-  var yDiff = event.clientY - position.top;
-  if (this.isInsideCircle(event)) {
-    this.resetVelocity();
-
-    if (xDiff > 0) {
-      this.xVelocity = -xDiff * 0.2 - 2;
-    }
-    if (xDiff < 0) {
-      this.xVelocity = -xDiff * 0.2 - 2;
-    }
-    if (yDiff > 0) {
-      this.yVelocity = -yDiff * 0.2 - 2;
-    }
-    if (yDiff < 0) {
-      this.yVelocity = -yDiff * 0.2 - 2;
-    }
-  }
-});
-
 function isInsideCircle(event) {
   return (
     Math.sqrt(
-      (event.clientX - position.left) * (event.clientX - position.left) +
-        (event.clientY - position.top) * (event.clientY - position.top)
+      (event.layerX - position.left) * (event.layerX - position.left) +
+        (event.layerY - position.top) * (event.layerY - position.top)
     ) < ballRadius
   );
 }
