@@ -19,14 +19,44 @@ h1 {
   position: absolute;
   width: 150px;
   height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
   box-shadow: 10px 10px 30px -10px #000000;
-  outline-offset: -2px;
+}
+
+#ball:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 25% 25px,
+    rgba(255, 255, 255, 0.75),
+    rgba(255, 255, 255, 0) 80%
+  );
+  filter: blur(10px);
+}
+
+#ball:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  box-shadow: inset -25px -25px 40px rgba(0, 0, 0, 0.75);
+}
+
+#ball-background {
   background-image: url("assets/speedwagon.jpg");
   background-size: cover;
   background-position: center;
+  animation: spin-left 4s infinite linear;
   background-repeat: no-repeat;
-  border-radius: 50%;
-  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes spin-right {
@@ -45,39 +75,6 @@ h1 {
   100% {
     transform: rotate(0);
   }
-}
-
-#ball:before {
-  content: "";
-  position: absolute;
-  top: -3%;
-  left: -3%;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 20% 0px,
-    #ffffff,
-    rgba(255, 255, 255, 0) 58%
-  );
-  filter: blur(10px);
-  z-index: 2;
-}
-
-#ball:after {
-  content: "";
-  position: absolute;
-  border-radius: 100%;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: radial-gradient(
-    circle at 50% 30%,
-    rgba(245, 237, 48, 0),
-    rgba(190, 190, 190, 0.2) 50%,
-    rgb(86, 86, 86) 100%
-  );
 }
 
 #game {

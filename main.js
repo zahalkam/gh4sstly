@@ -3,6 +3,7 @@ var logging = new Logging();
 
 var game = document.getElementById("game");
 var ball = document.getElementById("ball");
+var ballBackground = document.getElementById("ball-background");
 var score = document.getElementById("score-number");
 var clickableArea = document.getElementById("clickable-area");
 
@@ -27,7 +28,7 @@ function setupGame() {
 
   this.ball.style.left = `${position.left - ballRadius}px`;
   this.ball.style.top = `${position.top - ballRadius}px`;
-  this.ball.style.animation = ``;
+  this.ballBackground.style.animation = ``;
 
   this.score.innerHTML = 0;
 
@@ -71,14 +72,14 @@ window.addEventListener("resize", function () {
         console.log(xDiff);
         if (xDiff > 0) {
           //spin left
-          this.ball.style.animation = `spin-left ${
+          this.ballBackground.style.animation = `spin-left ${
             25 / xDiff
           }s infinite linear`;
           this.xVelocity = -xDiff * 0.4 - 6;
         }
         if (xDiff < 0) {
           //spin right
-          this.ball.style.animation = `spin-right ${
+          this.ballBackground.style.animation = `spin-right ${
             25 / -xDiff
           }s infinite linear`;
           this.xVelocity = -xDiff * 0.4 + 6;
