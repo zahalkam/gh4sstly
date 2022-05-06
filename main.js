@@ -67,10 +67,19 @@ window.addEventListener("resize", function () {
       if (this.isInsideCircle(event)) {
         this.gVelocity = 2.5;
         this.score.innerHTML = parseInt(this.score.innerHTML) + 1;
+        console.log(xDiff);
         if (xDiff > 0) {
+          //spin left
+          this.ball.style.animation = `spin-left ${
+            25 / xDiff
+          }s infinite linear`;
           this.xVelocity = -xDiff * 0.4 - 6;
         }
         if (xDiff < 0) {
+          //spin right
+          this.ball.style.animation = `spin-right ${
+            25 / -xDiff
+          }s infinite linear`;
           this.xVelocity = -xDiff * 0.4 + 6;
         }
         if (yDiff > 0) {

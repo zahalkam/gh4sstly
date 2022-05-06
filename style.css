@@ -19,25 +19,31 @@ h1 {
   position: absolute;
   width: 150px;
   height: 150px;
-  /* outline: 3px solid rgb(0, 0, 20); */
   box-shadow: 10px 10px 30px -10px #000000;
   outline-offset: -2px;
-  /* background: radial-gradient(circle at 50px 50px, #5cabff, #000); */
   background-image: url("assets/speedwagon.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
   overflow: hidden;
-  animation: spin 4s infinite linear;
 }
 
-@keyframes spin {
+@keyframes spin-right {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-left {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0);
   }
 }
 
